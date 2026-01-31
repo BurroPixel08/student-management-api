@@ -34,7 +34,7 @@ npm install
 
 ## Ejecución del proyecto
 
-**1. Incialización de la base de datos y despliegue del servidor**
+**1. Incialización de la base de datos y despliegue del servidor:**
 Crea la base de datos, inserta 10 registros de prueba y despliega el servidor
 ```
 npm start
