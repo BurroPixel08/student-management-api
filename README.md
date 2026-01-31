@@ -33,20 +33,14 @@ npm install
 ```
 
 ## Ejecución del proyecto
-**1. Inicializar la Base de Datos**
-Antes de arrancar la app por primera vez, debes preparar las tablas ejecutando tu script de inicialización:
 
-```
-node src/database/init-db.js
-```
-
-**2. Iniciar el Servidor**
-Una vez creada la base de datos, levanta la API con el siguiente comando:
+**1. Incialización de la base de datos y despliegue del servidos**
+Crea la base de datos, inserta 10 registros de prueba y despliega el servidor
 ```
 npm start
 ```
 
-**3. La API estará disponible en:**
+**2. La API estará disponible en:**
 ```
  http://localhost:3000
 ```
