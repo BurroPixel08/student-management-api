@@ -13,6 +13,13 @@ const createStudent = async (req, res) => {
         const newStudent = await Student.create(result.data);
         res.status(201).json(newStudent);
     } catch (err) {
+        if (err.name === 'SequelizeUniqueConstraintError') {
+            return res.status(409).json({ 
+                message: "Email already registered",
+                error: err.errors[0].message 
+            });
+        }
+
         res.status(500).json({ message: "error creating student", error: err.message });
     }
 };
@@ -38,7 +45,7 @@ const getAllStudents = async (req, res) => {
 
     res.json(students);
   } catch (error) {
-    res.status(500).json({ message: 'Error al obtener estudiantes', error: error.message });
+    res.status(500).json({ message: 'Error getting students', error: error.message });
   }
 };
 
@@ -90,7 +97,7 @@ const updateStudent = async (req, res) => {
 
     if (!result.success) {
       return res.status(400).json({ 
-        message: 'Datos incompletos o inválidos para actualización completa',
+        message: 'Incomplete or invalid data for complete update',
         errors: result.error.errors 
       });
     }
@@ -98,7 +105,7 @@ const updateStudent = async (req, res) => {
     const student = await Student.findByPk(id);
 
     if (!student) {
-      return res.status(404).json({ message: 'Estudiante no encontrado' });
+      return res.status(404).json({ message: 'Student not found' });
     }
 
     await student.update(result.data);
@@ -106,7 +113,7 @@ const updateStudent = async (req, res) => {
     res.status(200).json(student);
 
   } catch (error) {
-    res.status(500).json({ message: 'Error en el servidor', error: error.message });
+    res.status(500).json({ message: 'Internal server error', error: error.message });
   }
 }
 
@@ -118,14 +125,14 @@ const deleteStudent = async (req, res) => {
     const student = await Student.findByPk(id);
 
     if (!student) {
-      return res.status(404).json({ message: 'Estudiante no encontrado' });
+      return res.status(404).json({ message: 'Student not found' });
     }
 
     await student.destroy();
 
-    res.status(200).json({ message: 'Estudiante eliminado (soft delete)' });
+    res.status(200).json({ message: 'Student deleted (soft delete)' });
   } catch (error) {
-    res.status(500).json({ message: 'Error al eliminar', error: error.message });
+    res.status(500).json({ message: 'Failed to delete', error: error.message });
   }
 }
 
