@@ -57,7 +57,7 @@ const getStudentById = async (req, res) => {
     if (!student) return res.status(404).json({ message: 'Student not found' });
     res.json(student);
   } catch (error) {
-    res.status(500).json({ message: 'Error', error: error.message });
+    res.status(500).json({ message: 'Server Error', error: error.message });
   }
 };
 

@@ -8,7 +8,7 @@ Content-Type: application/json
 {
   "firstName": "Pedro",
   "lastName": "Duran",
-  "email": "pedritn@gmail.com",
+  "email": "pedrn@gmail.com",
   "major": "Ingeniería informática",
   "semester": 10,
   "gpa": 4.0,
@@ -40,5 +40,5 @@ PATCH http://localhost:3000/api/students/1
 Content-Type: application/json
 
 {
-  "gpa": 4.5
+  "gpa": 4
 }
